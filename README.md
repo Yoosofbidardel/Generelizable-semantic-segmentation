@@ -300,106 +300,8 @@ python evaluate.py --model_path checkpoints/best_model.pth --dataset_root /path/
 python inference.py --model_path checkpoints/best_model.pth --image_path /path/to/image.jpg
 ```
 
-## Usage Guide
 
-### Training a Model
 
-#### Basic Training
-
-```bash
-python train.py \
-  --config configs/my_config.yaml \
-  --output_dir results/my_experiment
-```
-
-#### Resume Training from Checkpoint
-
-```bash
-python train.py \
-  --config configs/my_config.yaml \
-  --checkpoint checkpoints/model_epoch_50.pth \
-  --output_dir results/my_experiment
-```
-
-#### Distributed Training (Multi-GPU)
-
-```bash
-python -m torch.distributed.launch \
-  --nproc_per_node=4 \
-  train.py \
-  --config configs/my_config.yaml \
-  --distributed
-```
-
-### Evaluation and Metrics
-
-#### Evaluate on Test Set
-
-```bash
-python evaluate.py \
-  --model_path checkpoints/best_model.pth \
-  --config configs/my_config.yaml \
-  --split test
-```
-
-#### Generate Segmentation Maps
-
-```bash
-python visualize.py \
-  --model_path checkpoints/best_model.pth \
-  --dataset_root /path/to/dataset \
-  --output_dir visualizations/
-```
-
-### Inference on New Images
-
-#### Single Image
-
-```bash
-python inference.py \
-  --model_path checkpoints/best_model.pth \
-  --image_path /path/to/image.jpg \
-  --output_path results/segmentation.png
-```
-
-#### Batch Processing
-
-```bash
-python inference.py \
-  --model_path checkpoints/best_model.pth \
-  --image_dir /path/to/images/ \
-  --output_dir results/segmentations/ \
-  --batch_size 32
-```
-
-#### Real-time Video Processing
-
-```bash
-python inference_video.py \
-  --model_path checkpoints/best_model.pth \
-  --video_path /path/to/video.mp4 \
-  --output_path results/segmented_video.mp4
-```
-
-### Model Export
-
-#### Export to ONNX
-
-```bash
-python export_onnx.py \
-  --model_path checkpoints/best_model.pth \
-  --output_path models/segmentation.onnx \
-  --opset_version 12
-```
-
-#### Quantization
-
-```bash
-python quantize_model.py \
-  --model_path checkpoints/best_model.pth \
-  --output_path models/segmentation_quantized.pth \
-  --quantization_type int8
-```
 
 ## Configuration
 
@@ -449,70 +351,6 @@ checkpoint:
   resume: str                 # Path to resume from
 ```
 
-## Project Structure
-
-```
-.
-├── README.md                 # This file
-├── requirements.txt          # Python dependencies
-├── setup.py                  # Package setup
-│
-├── configs/                  # Configuration files
-│   ├── cityscapes.yaml
-│   ├── pascal_voc.yaml
-│   └── custom.yaml
-│
-├── data/                     # Data handling modules
-│   ├── __init__.py
-│   ├── datasets.py           # Dataset classes
-│   ├── loaders.py            # DataLoader utilities
-│   └── augmentation.py       # Data augmentation
-│
-├── models/                   # Model architectures
-│   ├── __init__.py
-│   ├── encoders/             # Encoder networks
-│   ├── decoders/             # Decoder modules
-│   ├── heads/                # Segmentation heads
-│   └── backbones/            # Backbone networks
-│
-├── losses/                   # Loss functions
-│   ├── __init__.py
-│   ├── cross_entropy.py
-│   ├── dice.py
-│   └── focal.py
-│
-├── metrics/                  # Evaluation metrics
-│   ├── __init__.py
-│   ├── iou.py
-│   ├── pixel_accuracy.py
-│   └── confusion_matrix.py
-│
-├── training/                 # Training utilities
-│   ├── __init__.py
-│   ├── trainer.py            # Training loop
-│   ├── validator.py          # Validation logic
-│   └── callbacks.py          # Training callbacks
-│
-├── inference/                # Inference utilities
-│   ├── __init__.py
-│   ├── predictor.py          # Inference engine
-│   ├── postprocess.py        # Post-processing
-│   └── api.py                # REST API
-│
-├── scripts/                  # Utility scripts
-│   ├── download_datasets.sh
-│   ├── export_model.py
-│   └── visualize_results.py
-│
-├── tests/                    # Unit tests
-│   ├── test_models.py
-│   ├── test_data.py
-│   └── test_metrics.py
-│
-├── checkpoints/              # Model checkpoints
-├── results/                  # Training results
-└── logs/                     # TensorBoard logs
-```
 
 ## Advanced Features
 
@@ -634,37 +472,6 @@ Please ensure:
 - Update documentation
 - Add docstrings to functions
 
-## Citation
-
-If you use this framework in your research, please cite:
-
-```bibtex
-@repository{generalized_semantic_segmentation,
-  author = {Yoosofbidardel},
-  title = {Generalizable Semantic Segmentation Framework},
-  year = {2025},
-  url = {https://github.com/Yoosofbidardel/Generelizable-semantic-segmentation}
-}
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- PyTorch team for the deep learning framework
-- OpenCV for computer vision utilities
-- Dataset providers (Cityscapes, Pascal VOC, ADE20K, etc.)
-- Community contributions and feedback
-
-## Contact & Support
-
-For questions, issues, or suggestions:
-
-- **GitHub Issues**: [Report bugs](https://github.com/Yoosofbidardel/Generelizable-semantic-segmentation/issues)
-- **Email**: [Your contact email]
-- **Discussions**: [Join discussions](https://github.com/Yoosofbidardel/Generelizable-semantic-segmentation/discussions)
 
 ## Related Resources
 
@@ -675,6 +482,4 @@ For questions, issues, or suggestions:
 
 ---
 
-**Last Updated**: December 31, 2025
 
-Happy segmenting! 🎯
