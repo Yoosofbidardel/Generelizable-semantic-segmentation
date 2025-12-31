@@ -31,6 +31,19 @@ The framework is designed with modularity and scalability in mind, enabling easy
 
 ### Core Capabilities
 
+- **🔬 Novel Architecture: Siamese U-Net for Generalisable Segmentation**
+
+  The key novelty of this project is the use of a **Siamese U-Net architecture** to improve **generalisation across domains**.
+
+  Instead of relying on a single encoder–decoder path, the model leverages **two weight-sharing encoder branches** (Siamese setup) that learn **domain-invariant representations**. These shared encoders are coupled with a **U-Net–style decoder** to preserve spatial detail while enforcing feature consistency across inputs.
+
+  **Why Siamese + U-Net?**
+  - 🔁 **Weight sharing** encourages learning features that generalise beyond a single dataset or domain
+  - 🌍 **Improved robustness** to variations in appearance, contrast, and acquisition conditions
+  - 🧠 **U-Net skip connections** retain fine-grained spatial information critical for segmentation tasks
+  - 🎯 **Designed to address domain shift**, a major limitation of standard segmentation models
+
+  This architecture is particularly well-suited for **general-purpose semantic segmentation**, where training and deployment data distributions may differ significantly.
 - **Multi-Architecture Support**: Support for various encoder-decoder architectures
   - FCN (Fully Convolutional Networks)
   - U-Net
